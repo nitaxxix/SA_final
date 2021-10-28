@@ -42,7 +42,7 @@ func GetUserDentist(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if err := entity.DB().Raw("SELECT * FROM users WHERE id = ? AND role_id = ?", id, 1).Scan(&user).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM users WHERE id = ? ", id).Scan(&user).Error; err != nil {
 
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 
@@ -61,7 +61,7 @@ func GetUserDentistass(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if err := entity.DB().Raw("SELECT * FROM users WHERE id = ? AND role_id = ?", id, 2).Scan(&user).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM users WHERE id = ? ", id).Scan(&user).Error; err != nil {
 
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 
@@ -80,7 +80,7 @@ func GetUserNurse(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if err := entity.DB().Raw("SELECT * FROM users WHERE id = ? AND role_id = ?", id, 3).Scan(&user).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM users WHERE id = ? ", id).Scan(&user).Error; err != nil {
 
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 
@@ -99,7 +99,7 @@ func GetUserPharmacist(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if err := entity.DB().Raw("SELECT * FROM users WHERE id = ? AND role_id = ?", id, 4).Scan(&user).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM users WHERE id = ? ", id).Scan(&user).Error; err != nil {
 
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 
@@ -118,7 +118,7 @@ func GetUserFinancial(c *gin.Context) {
 
 	id := c.Param("id")
 
-	if err := entity.DB().Raw("SELECT * FROM users WHERE id = ? AND role_id = ?", id, 5).Scan(&user).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM users WHERE id = ?", id).Scan(&user).Error; err != nil {
 
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 

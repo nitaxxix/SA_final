@@ -3,6 +3,7 @@ package entity
 import (
 	"time"
 
+	"golang.org/x/crypto/bcrypt"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -59,10 +60,12 @@ func SetupDatabase() {
 	db.Model(&Role{}).Create(&role5)
 
 	// รวมสมาชิกทุกตำแหน่ง >> entity User -------------------------------------------------------
+	password1, err := bcrypt.GenerateFromPassword([]byte("1234"), 14)
+	password2, err := bcrypt.GenerateFromPassword([]byte("5678"), 14)
 	dentist1 := User{
 		Name:     "กอเอ๋ย กอไก่",
 		Username: "nita",
-		Pass:     "5678",
+		Pass:     string(password2),
 		Role:     role1,
 	}
 	db.Model(&User{}).Create(&dentist1)
@@ -70,7 +73,7 @@ func SetupDatabase() {
 	dentist2 := User{
 		Name:     "ขอไข่ ในเล้า",
 		Username: "name",
-		Pass:     "1234",
+		Pass:     string(password1),
 		Role:     role1,
 	}
 	db.Model(&User{}).Create(&dentist2)
@@ -78,7 +81,7 @@ func SetupDatabase() {
 	dentistass1 := User{
 		Name:     "คอควาย เข้านา",
 		Username: "pitch",
-		Pass:     "1234",
+		Pass:     string(password1),
 		Role:     role2,
 	}
 	db.Model(&User{}).Create(&dentistass1)
@@ -86,7 +89,7 @@ func SetupDatabase() {
 	dentistass2 := User{
 		Name:     "งองู ใจกล้า",
 		Username: "kantapit",
-		Pass:     "5678",
+		Pass:     string(password2),
 		Role:     role2,
 	}
 	db.Model(&User{}).Create(&dentistass2)
@@ -94,7 +97,7 @@ func SetupDatabase() {
 	nurse1 := User{
 		Name:     "จอจาน ใช้ดี",
 		Username: "few",
-		Pass:     "1234",
+		Pass:     string(password1),
 		Role:     role3,
 	}
 	db.Model(&User{}).Create(&nurse1)
@@ -102,7 +105,7 @@ func SetupDatabase() {
 	nurse2 := User{
 		Name:     "ฉอฉิ่ง ตีดัง",
 		Username: "pcrc",
-		Pass:     "5678",
+		Pass:     string(password2),
 		Role:     role3,
 	}
 	db.Model(&User{}).Create(&nurse2)
@@ -110,7 +113,7 @@ func SetupDatabase() {
 	pharmacist1 := User{
 		Name:     "ชอช้าง วิ่งหนี",
 		Username: "fonthap",
-		Pass:     "1234",
+		Pass:     string(password1),
 		Role:     role4,
 	}
 	db.Model(&User{}).Create(&pharmacist1)
@@ -118,7 +121,7 @@ func SetupDatabase() {
 	pharmacist2 := User{
 		Name:     "ซอโซ่ ล่ามดี",
 		Username: "q1234",
-		Pass:     "5678",
+		Pass:     string(password2),
 		Role:     role4,
 	}
 	db.Model(&User{}).Create(&pharmacist2)
@@ -126,7 +129,7 @@ func SetupDatabase() {
 	financial1 := User{
 		Name:     "ญอหญิง โสภา",
 		Username: "tanodom",
-		Pass:     "1234",
+		Pass:     string(password1),
 		Role:     role5,
 	}
 	db.Model(&User{}).Create(&financial1)
@@ -134,7 +137,7 @@ func SetupDatabase() {
 	financial2 := User{
 		Name:     "ฐอฐาน เข้ามารอง",
 		Username: "s1234",
-		Pass:     "5678",
+		Pass:     string(password2),
 		Role:     role5,
 	}
 	db.Model(&User{}).Create(&financial2)

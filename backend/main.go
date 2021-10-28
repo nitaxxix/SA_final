@@ -17,7 +17,6 @@ func main() {
 
 	// Appoint
 	r.GET("/appoints", controller.ListAppoint)
-
 	r.POST("/appoint", controller.CreateAppoint)
 
 	// Insurance
@@ -63,12 +62,15 @@ func main() {
 
 	// User
 	r.GET("/users", controller.ListUser)
-	r.GET("/user/dentist", controller.GetUserDentist)
+	r.GET("/user/dentist/:id", controller.GetUserDentist)
 	r.GET("/user/dentistass", controller.GetUserDentistass)
 	r.GET("/user/nurse", controller.GetUserNurse)
 	r.GET("/user/pharmacist", controller.GetUserPharmacist)
 	r.GET("/user/financial", controller.GetUserFinancial)
 	r.POST("/user", controller.CreateUser)
+
+	// Authentication Routes
+	r.POST("/login", controller.Login)
 
 	// Run the server
 

@@ -65,7 +65,7 @@ func CreatePatient(c *gin.Context) {
 		Insurance:   insurance, // โยงความสัมพันธ์กับ Entity insurance
 		Job:         job,       // โยงความสัมพันธ์กับ Entity job
 		Sex:         sex,       // โยงความสัมพันธ์กับ Entity sex
-		UserNurse:   nurse,      // โยงความสัมพันธ์กับ Entity user
+		UserNurse:   nurse,     // โยงความสัมพันธ์กับ Entity user
 		PatientTime: patient.PatientTime,
 	}
 
@@ -83,7 +83,7 @@ func CreatePatient(c *gin.Context) {
 func ListPatient(c *gin.Context) {
 
 	var pats []entity.Patient
-	if err := entity.DB().Preload("Sex").Preload("Job").Preload("User").Preload("Insurance").Raw("SELECT * FROM patients").Find(&pats).Error; err != nil {
+	if err := entity.DB().Preload("Sex").Preload("Job").Preload("UserNurse").Preload("Insurance").Raw("SELECT * FROM patients").Find(&pats).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
